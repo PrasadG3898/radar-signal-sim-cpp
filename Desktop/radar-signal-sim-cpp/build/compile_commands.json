@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/yarla/Desktop/radar-signal-sim-cpp/build",
+  "command": "C:\\Users\\yarla\\Desktop\\MSYS2\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\radar_sim.dir\\src\\main.cpp.obj -c C:\\Users\\yarla\\Desktop\\radar-signal-sim-cpp\\src\\main.cpp",
+  "file": "C:/Users/yarla/Desktop/radar-signal-sim-cpp/src/main.cpp",
+  "output": "CMakeFiles/radar_sim.dir/src/main.cpp.obj"
+}
+]
