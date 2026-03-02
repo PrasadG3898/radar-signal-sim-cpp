@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
 
-# On Windows shells with Conda/MinGW ahead of MSYS2 in PATH, GNU C++
-# can crash while probing the compiler. Prepend the selected compiler dir.
 if(WIN32)
     if(DEFINED CMAKE_CXX_COMPILER AND EXISTS "${CMAKE_CXX_COMPILER}")
         get_filename_component(_bootstrap_cxx_bin "${CMAKE_CXX_COMPILER}" DIRECTORY)
@@ -29,7 +27,6 @@ add_executable(radar_sim
 if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     get_filename_component(_compiler_bin_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
 
-    # Keep MSYS2 runtime DLLs ahead of other MinGW/Conda DLLs during build.
     string(REPLACE ";" "\\;" _escaped_path "$ENV{PATH}")
     set(_launcher_env "PATH=${_compiler_bin_dir}\\;${_escaped_path}")
     set_property(
@@ -43,7 +40,6 @@ if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         "${CMAKE_COMMAND};-E;env;${_launcher_env}"
     )
 
-    # Ensure radar_sim.exe loads the matching GNU runtime regardless of PATH order.
     foreach(_dll IN ITEMS libstdc++-6.dll libgcc_s_seh-1.dll libwinpthread-1.dll)
         add_custom_command(
             TARGET radar_sim
